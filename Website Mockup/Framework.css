@@ -1,0 +1,375 @@
+/* ---------- Base ---------- */
+:root {
+    --bg: #1b1714;
+    --panel: #262019;
+    --card: #302820;
+    --border: #4a3d2f;
+    --text: #ece3d4;
+    --muted: #a99a85;
+    --accent: #c8963e;
+    --monster: #b0413e;
+    --good: #6fae5c;
+    --warn: #d9a441;
+    --bad: #d0574f;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 15px;
+}
+
+h1, h2, h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    margin: 0;
+}
+
+button, select, input {
+    font: inherit;
+}
+
+/* ---------- Header ---------- */
+#siteHeader {
+    padding: 20px 24px;
+    border-bottom: 2px solid var(--accent);
+    background: linear-gradient(#2e251c, var(--bg));
+}
+
+#siteHeader h1 {
+    color: var(--accent);
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+#siteHeader p {
+    margin: 4px 0 0;
+    color: var(--muted);
+}
+
+/* ---------- Layout: party top left, monsters top right, results bottom ---------- */
+#mainBody {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "party   monsters"
+        "results results";
+    gap: 20px;
+    padding: 20px 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#partyPanel   { grid-area: party; }
+#monsterPanel { grid-area: monsters; }
+#resultsPanel { grid-area: results; }
+
+@media (max-width: 800px) {
+    #mainBody {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "party"
+            "monsters"
+            "results";
+        padding: 16px;
+    }
+}
+
+/* ---------- Panels ---------- */
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.panelHeader {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+#partyPanel   .panelHeader h2 { color: var(--accent); }
+#monsterPanel .panelHeader h2 { color: var(--monster); }
+
+/* ---------- Buttons & inputs ---------- */
+.btn {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    border-color: var(--accent);
+}
+
+.btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #1b1714;
+    font-weight: 600;
+}
+
+.search, select {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+}
+
+.search {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+/* ---------- Character / monster cards ---------- */
+.cardList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 10px 40px 10px 12px;
+}
+
+.card.monster {
+    border-left-color: var(--monster);
+    padding-right: 110px;
+}
+
+.cardTitle {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    margin-bottom: 6px;
+}
+
+.cardTitle .name {
+    font-weight: 600;
+}
+
+.tag {
+    font-size: 0.8rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1px 8px;
+}
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.stats b {
+    color: var(--text);
+}
+
+.remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.remove:hover {
+    color: var(--bad);
+}
+
+.count {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.count button {
+    width: 26px;
+    height: 26px;
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.count span {
+    min-width: 1.5em;
+    text-align: center;
+    font-weight: 600;
+}
+
+.encounterSummary {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    color: var(--muted);
+}
+
+.encounterSummary b {
+    color: var(--text);
+}
+
+.encounterSummary .hard {
+    color: var(--warn);
+}
+
+/* ---------- Results ---------- */
+.runControls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.runControls label {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    color: var(--muted);
+}
+
+.summaryRow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.stat .label {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.stat .value {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.good { color: var(--good); }
+.warn { color: var(--warn); }
+.bad  { color: var(--bad); }
+
+.resultsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 800px) {
+    .resultsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.subPanel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.subPanel h3 {
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+}
+
+/* Survival bars */
+.bars {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bars li {
+    display: grid;
+    grid-template-columns: 120px 1fr 44px;
+    gap: 10px;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.bar {
+    height: 12px;
+    background: var(--panel);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.bar span {
+    display: block;
+    height: 100%;
+    background: var(--good);
+    border-radius: 6px;
+}
+
+.barValue {
+    text-align: right;
+    color: var(--muted);
+}
+
+/* Combat log */
+.combatLog {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 220px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+}
+
+.combatLog li {
+    padding: 4px 0;
+    border-bottom: 1px dashed var(--border);
+}
+
+.combatLog .round {
+    display: inline-block;
+    width: 2.2em;
+    color: var(--accent);
+    font-weight: 600;
+}

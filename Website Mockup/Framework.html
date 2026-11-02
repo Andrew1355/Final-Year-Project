@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Roll</title>
+    <link rel = "stylesheet" href = "Framework.css">
+</head>
+<body>
+    <header id = "siteHeader">
+        <h1>Pre-Roll</h1>
+        <p>D&amp;D 5e combat simulator &mdash; build a party, pick your monsters, and see how the fight plays out.</p>
+    </header>
+
+    <section id = "mainBody">
+
+        <!-- Top left: the party -->
+        <section id = "partyPanel" class = "panel">
+            <div class = "panelHeader">
+                <h2>Party</h2>
+                <button class = "btn">+ Add Character</button>
+            </div>
+
+            <ul class = "cardList">
+                <li class = "card">
+                    <div class = "cardTitle">
+                        <span class = "name">Thorin</span>
+                        <span class = "tag">Fighter 5</span>
+                    </div>
+                    <div class = "stats">
+                        <span><b>HP</b> 44</span>
+                        <span><b>AC</b> 18</span>
+                        <span><b>Init</b> +1</span>
+                        <span><b>Atk</b> +7 (1d8+4) &times;2</span>
+                    </div>
+                    <button class = "remove" title = "Remove">&times;</button>
+                </li>
+                <li class = "card">
+                    <div class = "cardTitle">
+                        <span class = "name">Elara</span>
+                        <span class = "tag">Wizard 5</span>
+                    </div>
+                    <div class = "stats">
+                        <span><b>HP</b> 27</span>
+                        <span><b>AC</b> 12</span>
+                        <span><b>Init</b> +3</span>
+                        <span><b>Spell DC</b> 15</span>
+                    </div>
+                    <button class = "remove" title = "Remove">&times;</button>
+                </li>
+                <li class = "card">
+                    <div class = "cardTitle">
+                        <span class = "name">Brother Aldric</span>
+                        <span class = "tag">Cleric 5</span>
+                    </div>
+                    <div class = "stats">
+                        <span><b>HP</b> 38</span>
+                        <span><b>AC</b> 18</span>
+                        <span><b>Init</b> +0</span>
+                        <span><b>Spell DC</b> 14</span>
+                    </div>
+                    <button class = "remove" title = "Remove">&times;</button>
+                </li>
+                <li class = "card">
+                    <div class = "cardTitle">
+                        <span class = "name">Wren</span>
+                        <span class = "tag">Rogue 5</span>
+                    </div>
+                    <div class = "stats">
+                        <span><b>HP</b> 33</span>
+                        <span><b>AC</b> 15</span>
+                        <span><b>Init</b> +4</span>
+                        <span><b>Atk</b> +7 (1d6+4, SA 3d6)</span>
+                    </div>
+                    <button class = "remove" title = "Remove">&times;</button>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Top right: the monsters -->
+        <section id = "monsterPanel" class = "panel">
+            <div class = "panelHeader">
+                <h2>Monsters</h2>
+                <button class = "btn">+ Add Monster</button>
+            </div>
+
+            <input class = "search" type = "search" placeholder = "Search monsters (e.g. Owlbear, Goblin)...">
+
+            <ul class = "cardList">
+                <li class = "card monster">
+                    <div class = "cardTitle">
+                        <span class = "name">Owlbear</span>
+                        <span class = "tag">CR 3</span>
+                    </div>
+                    <div class = "stats">
+                        <span><b>HP</b> 59</span>
+                        <span><b>AC</b> 13</span>
+                        <span><b>Init</b> +1</span>
+                        <span><b>Atk</b> Beak +7, Claws +7</span>
+                    </div>
+                    <div class = "count">
+                        <button>&minus;</button><span>1</span><button>+</button>
+                    </div>
+                </li>
+                <li class = "card monster">
+                    <div class = "cardTitle">
+                        <span class = "name">Goblin</span>
+                        <span class = "tag">CR 1/4</span>
+                    </div>
+                    <div class = "stats">
+                        <span><b>HP</b> 7</span>
+                        <span><b>AC</b> 15</span>
+                        <span><b>Init</b> +2</span>
+                        <span><b>Atk</b> Scimitar +4 (1d6+2)</span>
+                    </div>
+                    <div class = "count">
+                        <button>&minus;</button><span>4</span><button>+</button>
+                    </div>
+                </li>
+            </ul>
+
+            <div class = "encounterSummary">
+                <span>Total XP: <b>1,100</b></span>
+                <span>Difficulty: <b class = "hard">Hard</b></span>
+            </div>
+        </section>
+
+        <!-- Bottom: simulation results -->
+        <section id = "resultsPanel" class = "panel">
+            <div class = "panelHeader">
+                <h2>Simulation Results</h2>
+                <div class = "runControls">
+                    <label>Runs
+                        <select>
+                            <option>100</option>
+                            <option selected>1,000</option>
+                            <option>10,000</option>
+                        </select>
+                    </label>
+                    <button class = "btn primary">Run Simulation</button>
+                </div>
+            </div>
+
+            <div class = "summaryRow">
+                <div class = "stat">
+                    <span class = "label">Party Win Rate</span>
+                    <span class = "value good">78%</span>
+                </div>
+                <div class = "stat">
+                    <span class = "label">Avg. Rounds</span>
+                    <span class = "value">4.2</span>
+                </div>
+                <div class = "stat">
+                    <span class = "label">Avg. Party Deaths</span>
+                    <span class = "value warn">0.6</span>
+                </div>
+                <div class = "stat">
+                    <span class = "label">Total Party Kill</span>
+                    <span class = "value bad">9%</span>
+                </div>
+            </div>
+
+            <div class = "resultsGrid">
+                <div class = "subPanel">
+                    <h3>Survival by Character</h3>
+                    <ul class = "bars">
+                        <li><span class = "barLabel">Thorin</span><span class = "bar"><span style = "width: 94%"></span></span><span class = "barValue">94%</span></li>
+                        <li><span class = "barLabel">Elara</span><span class = "bar"><span style = "width: 61%"></span></span><span class = "barValue">61%</span></li>
+                        <li><span class = "barLabel">Brother Aldric</span><span class = "bar"><span style = "width: 88%"></span></span><span class = "barValue">88%</span></li>
+                        <li><span class = "barLabel">Wren</span><span class = "bar"><span style = "width: 79%"></span></span><span class = "barValue">79%</span></li>
+                    </ul>
+                </div>
+
+                <div class = "subPanel">
+                    <h3>Sample Combat Log</h3>
+                    <ol class = "combatLog">
+                        <li><span class = "round">R1</span> Wren rolls 21 initiative and acts first.</li>
+                        <li><span class = "round">R1</span> Wren hits Goblin #1 for 15 (Sneak Attack). Goblin #1 dies.</li>
+                        <li><span class = "round">R1</span> Owlbear hits Thorin with Beak (9) and Claws (12).</li>
+                        <li><span class = "round">R1</span> Elara casts <i>Fireball</i>: Goblins #2&ndash;#4 fail, all die.</li>
+                        <li><span class = "round">R2</span> Owlbear hits Elara with Claws for 14. Elara is at 13 HP.</li>
+                        <li><span class = "round">R2</span> Thorin hits Owlbear twice for 17.</li>
+                        <li><span class = "round">R3</span> Brother Aldric casts <i>Spiritual Weapon</i> on Owlbear for 8.</li>
+                        <li><span class = "round">R4</span> Thorin hits Owlbear for 11. Owlbear dies. <b>Party wins.</b></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+    </section>
+</body>
+</html>
